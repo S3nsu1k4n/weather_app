@@ -10,7 +10,6 @@ export class Weather{
   }
 
   set_data = data => {
-    console.log(data);
     this.cloud = data.cloud;
     this.humidity = data.humidity;
     this.temp_c = data.temp_c;

@@ -6,18 +6,18 @@ export class WeatherAPI{
     this.weather = new Weather();
     this.location = new Location();
     this.url = `https://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=`
-  }
-  get_data = city => {
-    fetch(this.url + city, {mode: 'cors'})
-    .then(response => {
-      return response.json();
-    })
-    .then(response => {
-      console.log(response);
-      this.location.set_data(response.location);
-      this.weather.set_data(response.current);
-    })
+    this.status;
+    this.ok;
   }
 
+  get_data = async city => {
+    const response = await fetch(this.url + city, {mode: 'cors'});
+    this.status = response.status;
+    this.ok = response.ok;
+    if (this.ok) {
+      const data = await response.json();
+      this.location.set_data(data.location);
+      this.weather.set_data(data.current);
+    }
+  }
 }
-
