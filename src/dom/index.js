@@ -18,3 +18,5 @@ export { A,
  } from './elements'
 
  export { Searchbar } from './searchbar'
+ export { WeatherCard } from './weather_card'
+ export { LocationCard } from './location_card'
